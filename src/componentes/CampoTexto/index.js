@@ -1,12 +1,17 @@
 import './CampoTexto.css'
 
-const CampoTexto = () => {
+
+const CampoTexto = (props) => {
+    //Usado para concatenar 
+    const placeholderModificada  = `${props.placeholder}... versão teste`
+
+
     return(
         <div className="campo-texto">
             <label>
-                Nome
+                {props.label}
             </label>
-            <input placeholder='Digite seu Nome'/>
+            <input placeholder={placeholderModificada}/>
               
 
         </div>

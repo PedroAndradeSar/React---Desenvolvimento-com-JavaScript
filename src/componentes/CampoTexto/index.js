@@ -11,7 +11,7 @@ const CampoTexto = (props) => {
             <label>
                 {props.label}
             </label>
-            <input placeholder={placeholderModificada}/>
+            <input placeholder={props.placeholder}/>
               
 
         </div>

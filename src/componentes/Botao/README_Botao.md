@@ -85,6 +85,82 @@ const Formulario = () => {
 
 export default Formulario
 
+**Aula Escutando Evento**
+
+*Criando validação no input CampoTexto*
+
+Feito isso podemos criar as validações  para dos campos de formulario, para isto iremos usar um parametro que podemos chamar por exemplo de *"obrigatorio"* onde iremos atribuir o valor *"true"*, essa validação é nativa do HTML ficando com a sintaxe da seguinte forma: 
+
+<CampoTexto obrigatorio={true} label="Nome" placeholder="Digite o seu nome" />
+
+O codigo completo ficaria assim:
+
+import './Formulario.css';
+import CampoTexto from '../CampoTexto';
+import ListaSuspensa from '../ListaSuspensa';
+import Botao from '../Botao';
+
+const Formulario = () => {
+
+    const times = [
+        'Programação', 'Front-End', 'Data Science', 'Devops', 'UX e Desing', 'Mobile', 'Inovação e Gestão'
+    ]
+
+    const aoSalvar = (evento) =>{
+        evento.preventDefault()
+        console.log("evento de submit")
+    }
+        
+
+   return (
+        <section className="formulario">
+            <form onSubmit={aoSalvar}>
+                <h2>Preencha as informações abaixo:</h2>
+                <CampoTexto obrigatorio={true} label="Nome" placeholder="Digite o seu nome" />
+                <CampoTexto obrigatorio={true} label="Cargo" placeholder="Digite o seu cargo" />
+                <CampoTexto label="Imagem" placeholder="Insira ou digite o caminho da sua imagem" />
+                <ListaSuspensa obrigatorio={true} label="Times" itens={times} />
+                <Botao>
+                    Criar Card
+                </Botao>
+
+            </form>
+        </section>
+    )
+}
+
+export default Formulario
+
+**Aba CampoTexto**
+Feito isso na aba CampoTexto iremos fazer outra validação, essa nativa do React.js no campo <input> iremos utilizar o **required={}** e dentro das { } iremos passar a props.obrigatorio, deste modo se o input for true o campo será obrigatorio o preenchimento do campo.
+
+   <input required={props.obrigatorio} placeholder={props.placeholder}/>
+
+O codico completo: 
+import './CampoTexto.css'
+
+
+const CampoTexto = (props) => {
+    //Usado para concatenar 
+    const placeholderModificada  = `${props.placeholder}... versão teste`
+
+
+   return(
+        <div className="campo-texto">
+            <label>
+                {props.label}
+            </label>
+            <input required={props.obrigatorio} placeholder={props.placeholder}/>
+              
+
+        </div>
+    ) 
+};
+
+export default CampoTexto;
+
+
+
 
 ***CSS***
 

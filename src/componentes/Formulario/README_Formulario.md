@@ -153,6 +153,147 @@ const Formulario = () => {
 
 export default Formulario
 
+**Aula Escutando Evento**
+
+Para receber os eventos ao clicar podemos usar dentro da tag <form> o **onSubmit={}**, ficando da seguinte forma <form onSubmit={}>
+
+Feito isso irei criar uma função que será executada através do <form onSubmit={}>. A função criada poderei chamar de *aoSalvar*, ela sera uma arrow function, e ficará da seguinte forma:
+
+
+ const aoSalvar = () =>{
+        console.log("evento de submit")
+    }
+        
+
+    return (
+        <section className="formulario">
+            <form onSubmit={aoSalvar}>
+                <h2>Preencha as informações abaixo:</h2>
+ 
+No entanto ocorre quando isso acontece eu precisaria interceptar o evento de click, para isso dentro da minha função *aoSalvar* irei passar um parametro chamado *evento*, e para evitar que a pagina seja recarregada ao clicar irei chamar o metodo **.preventDefault()**, que tem como função pausar, assim possibilitando a verificação do teste. Ficando da seguinte forma: 
+
+   const aoSalvar = (evento) =>{
+        evento.preventDefault()
+        console.log("evento de submit")
+    }
+        
+
+   return (
+        <section className="formulario">
+            <form onSubmit={aoSalvar}>
+                <h2>Preencha as informações abaixo:</h2>
+
+                <CampoTexto label="Nome" placeholder="Digite o seu nome" />
+
+O codigo completo ficaria assim:
+
+import './Formulario.css';
+import CampoTexto from '../CampoTexto';
+import ListaSuspensa from '../ListaSuspensa';
+import Botao from '../Botao';
+
+const Formulario = () => {
+
+    const times = [
+        'Programação', 'Front-End', 'Data Science', 'Devops', 'UX e Desing', 'Mobile', 'Inovação e Gestão'
+    ]
+
+    const aoSalvar = (evento) =>{
+        evento.preventDefault()
+        console.log("evento de submit")
+    }
+        
+
+   return (
+        <section className="formulario">
+            <form onSubmit={aoSalvar}>
+                <h2>Preencha as informações abaixo:</h2>
+                <CampoTexto label="Nome" placeholder="Digite o seu nome" />
+                <CampoTexto label="Cargo" placeholder="Digite o seu cargo" />
+                <CampoTexto label="Imagem" placeholder="Insira ou digite o caminho da sua imagem" />
+                <ListaSuspensa label="Times" itens={times} />
+                <Botao>
+                    Criar Card
+                </Botao>
+
+            </form>
+        </section>
+    )
+}
+
+export default Formulario
+
+Feito isso podemos criar as validações  para dos campos de formulario, para isto iremos usar um parametro que podemos chamar por exemplo de *"obrigatorio"* onde iremos atribuir o valor *"true"*, essa validação é nativa do HTML ficando com a sintaxe da seguinte forma: 
+
+<CampoTexto obrigatorio={true} label="Nome" placeholder="Digite o seu nome" />
+
+O codigo completo ficaria assim:
+
+import './Formulario.css';
+import CampoTexto from '../CampoTexto';
+import ListaSuspensa from '../ListaSuspensa';
+import Botao from '../Botao';
+
+const Formulario = () => {
+
+    const times = [
+        'Programação', 'Front-End', 'Data Science', 'Devops', 'UX e Desing', 'Mobile', 'Inovação e Gestão'
+    ]
+
+    const aoSalvar = (evento) =>{
+        evento.preventDefault()
+        console.log("evento de submit")
+    }
+        
+
+   return (
+        <section className="formulario">
+            <form onSubmit={aoSalvar}>
+                <h2>Preencha as informações abaixo:</h2>
+                <CampoTexto obrigatorio={true} label="Nome" placeholder="Digite o seu nome" />
+                <CampoTexto obrigatorio={true} label="Cargo" placeholder="Digite o seu cargo" />
+                <CampoTexto label="Imagem" placeholder="Insira ou digite o caminho da sua imagem" />
+                <ListaSuspensa obrigatorio={true} label="Times" itens={times} />
+                <Botao>
+                    Criar Card
+                </Botao>
+
+            </form>
+        </section>
+    )
+}
+
+export default Formulario
+
+**Aba CampoTexto**
+Feito isso na aba CampoTexto iremos fazer outra validação, essa nativa do React.js no campo <input> iremos utilizar o **required={}** e dentro das { } iremos passar a props.obrigatorio, deste modo se o input for true o campo será obrigatorio o preenchimento do campo.
+
+   <input required={props.obrigatorio} placeholder={props.placeholder}/>
+
+O codico completo: 
+import './CampoTexto.css'
+
+
+const CampoTexto = (props) => {
+    //Usado para concatenar 
+    const placeholderModificada  = `${props.placeholder}... versão teste`
+
+
+    return(
+        <div className="campo-texto">
+            <label>
+                {props.label}
+            </label>
+            <input required={props.obrigatorio} placeholder={props.placeholder}/>
+              
+
+        </div>
+    ) 
+};
+
+export default CampoTexto;
+***************************
+
 
 **CSS**
 

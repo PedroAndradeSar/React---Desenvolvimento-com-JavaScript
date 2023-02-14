@@ -96,6 +96,63 @@ const Formulario = () => {
 
 export default Formulario
 
+Pensando no modo que ao criar o botão possa ter a necessidade de chamar uma imagem ou um icone, podemos alterar a propriedade botão utilizando a propriedade React chamada ***children*** que tem como função "pegar" tudo que estiver entre a abertura e o chegamento do botao na aba onde esta sendo chamado, no caso o formulario. No caso a aba botão ficará assim:
+
+**ABA BOTAO**
+
+import './Botao.css';
+
+const Botao = (props) => {
+    return (
+        <button className="botao">
+            {props.children}
+        </button>
+    )
+}
+
+export default Botao;
+
+**ABA FORMULARIO**
+
+Já na aba *index.js FORMULARIO* ficará da seguinte forma: 
+
+   <Botao>
+    Criar Card
+   </Botao>
+
+Deste modo posso colocar uma imagem ou um icone ou texto entre da seguinte forma <Botao> img... || icon... || text... </Botao> . No escopo geral ficará da seguinte forma a aba *index.js | Formulario*
+
+import './Formulario.css';
+import CampoTexto from '../CampoTexto';
+import ListaSuspensa from '../ListaSuspensa';
+import Botao from '../Botao';
+
+const Formulario = () => {
+
+    const times = [
+        'Programação', 'Front-End', 'Data Science', 'Devops', 'UX e Desing', 'Mobile', 'Inovação e Gestão'
+    ]
+        
+
+   return (
+        <section className="formulario">
+            <form>
+                <h2>Preencha as informações abaixo:</h2>
+                <CampoTexto label="Nome" placeholder="Digite o seu nome" />
+                <CampoTexto label="Cargo" placeholder="Digite o seu cargo" />
+                <CampoTexto label="Imagem" placeholder="Insira ou digite o caminho da sua imagem" />
+                <ListaSuspensa label="Times" itens={times} />
+                <Botao>
+                    Criar Card
+                </Botao>
+
+            </form>
+        </section>
+    )
+}
+
+export default Formulario
+
 
 **CSS**
 

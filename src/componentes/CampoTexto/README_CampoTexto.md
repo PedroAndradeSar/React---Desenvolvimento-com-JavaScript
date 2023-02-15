@@ -83,6 +83,98 @@ export default CampoTexto;
 O mesmo eu consigo fazer com o placeholder conforme demonstrado acima.
 
 
+**Aula Manipulando o input do usuario**
+
+Orientada a eventos
+
+No React.js disponibiliza uma função que faz com que possamos ficar "ouvindo" o <input> para que toda vez que ele sofra alguma alteração, ele possa executar algo.
+Para isto, temos a função **onChange={}**, que fica dentro do <input>, da seguinte forma: <input onChange={}>. Feito isso, terá que ser construido a função que ira escutar o *evento* do <input>, neste caso irei chamar de const aoDigitado = () =>{  }, ficando da seguinte forma:
+
+import './CampoTexto.css'
+
+
+const CampoTexto = (props) => {
+    //Usado para concatenar 
+    const placeholderModificada  = `${props.placeholder}... `
+
+    const aoDigitado = (evento) => {            //Adicionado o parametro de evento na função
+        console.log(evento.target.value)        //Realizado um console.log para receber a leitura do evento e mostrar seu valor, conforme esta sendo digitado.
+    }
+
+
+   return(
+        <div className="campo-texto">
+            <label>
+                {props.label}
+            </label>
+            <input onChange={aoDigitado} required={props.obrigatorio} placeholder={placeholderModificada}/>
+
+        </div>
+    ) 
+};
+
+export default CampoTexto;
+
+Caso eu queira armazenar um valor de uma vareavel eu posso criar uma **let** *valor*='', no caso eu criaria uma vareavel com uma string vazia, ficando let valor=' ';
+Deste modo podendo chamar ela dentro da função *aoDigitado* atribuindo-a ao *valor=evento.target.value* transformando a função da seguinte maneira: 
+
+   let valor = '';
+
+   const aoDigitado = (evento) => {
+        valor = evento.target.value
+        console.log(valor)
+    }
+
+Feito isso tendo uma visão do codigo geral irá ficar da seguinte maneira:
+
+import './CampoTexto.css'
+
+
+const CampoTexto = (props) => {
+    //Usado para concatenar 
+   const placeholderModificada  = `${props.placeholder}... `
+
+   let valor = ''
+
+   const aoDigitado = (evento) => {
+        valor = evento.target.value
+        console.log(valor)
+    }
+
+
+   return(
+        <div className="campo-texto">
+            <label>
+                {props.label}
+            </label>
+            <input onChange={aoDigitado} required={props.obrigatorio} placeholder={placeholderModificada}/>
+
+        </div>
+    ) 
+};
+
+export default CampoTexto;
+
+Feito isso ja conseguimos armazenar em uma vareavel os dados fornecidos pelo input.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ***CSS***
 A *div className="campo-texto"* irá ser usada para o **CampoTexto.css**
 

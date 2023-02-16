@@ -158,7 +158,18 @@ export default CampoTexto;
 Feito isso ja conseguimos armazenar em uma vareavel os dados fornecidos pelo input.
 
 
+***Aula Controlando o Estado***
 
+Nesta aula ira tratar referente a **hook useState** conhecido como hook do estado.
+
+Para usar o useState, temos que fazer o import dele, import { useState } from 'react', ficando desta forma:
+
+import './CampoTexto.css'
+import { useState } from 'react'
+
+O useState fornece um array de 2 valores, no array da posição 0 [**0**, 1] ira ser o valor original (valor real do estado), equanto o array na posição 1 [0, **1**] ira ter a palavra **set** na frente da vareravel, ficando da seguinte forma [0, **set1**], o array da posição *set1* tem a função de atualizar esse valor e renderiza-lo. exemplo utilizando o nome da vareavel chamada "valor", sua sintaxe ficará assim:
+
+const [valor, setValor] = useState()
 
 
 
